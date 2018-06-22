@@ -1,0 +1,73 @@
+<div>
+  <table>
+    <tr>
+      <td>Task:</td>
+      <td>
+        <input type="text" [(ngModel)]="task" id="task">
+      </td>
+      <td>Parent Task:</td>
+      <td>
+        <input type="text" [(ngModel)]="parentTask" id="parentTask">
+      </td>
+    </tr>
+    <tr>
+      <td>Priority From:</td>
+      <td>
+        <input type="number" [(ngModel)]="priorityFrom" id="priorityFrom">
+      </td>
+      <td>Priority To:</td>
+      <td>
+        <input type="text" [(ngModel)]="priorityTo" id="priorityTo">
+      </td>
+      <td>Start Date:</td>
+      <td>
+        <input type="date" [(ngModel)]="startDate" id="startDate">
+      </td>
+      <td>End Date:</td>
+      <td>
+        <input type="date" [(ngModel)]="endDate" id="endDate">
+      </td>
+    </tr>
+
+  </table>
+  <p>
+    <button type="submit" class="btn btn-primary" (click)="search()">Search</button>
+  </p>
+  <div >Search Results</div>
+  <table>
+    <tr *ngFor="let result of results">
+      <table style="width:50%">
+        <tr>
+          <th>Task</th>
+          <th>Parent Task</th>
+          <th>Priority</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+        </tr>
+        <tr>
+          <td>
+            <input type="text" [(ngModel)]="result.task" disabled="true">
+          </td>
+          <td>
+            <input type="text" [(ngModel)]="result.parentTask" disabled="true">
+          </td>
+          <td>
+            <output>{{result.priority}}</output>
+          </td>
+
+          <td>
+            <output type="date" disabled="true">{{result.startDate | date:'MM/dd/yyyy'}}</output>
+          </td>
+
+          <td>
+            <output type="date" disabled="true">{{result.endDate | date:'MM/dd/yyyy'}}</output>
+          </td>
+          <td>
+              <button type="submit" class="btn btn-primary" >Edit</button>
+          </td>
+          <td><button type="submit" class="btn btn-primary" >Remove</button></td>
+        </tr>
+      </table>
+    </tr>
+  </table>
+</div>
