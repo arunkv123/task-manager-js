@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 import { Options } from 'ng5-slider';
 import { DatePipe } from '@angular/common';
+import { AddTaskService} from './add-task.service'
 
 @Component({
   selector: 'app-add-task',
