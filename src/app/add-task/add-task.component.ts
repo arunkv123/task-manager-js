@@ -3,17 +3,20 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 import { Options } from 'ng5-slider';
 import { DatePipe } from '@angular/common';
-import { AddTaskService} from './add-task.service'
+import { AddTaskService } from './add-task.service';
+import { Response } from '../value-objects/response';
 
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
-  styleUrls: ['./add-task.component.css']
+  styleUrls: ['./add-task.component.css'],
+  providers: [AddTaskService, DatePipe]
 })
 export class AddTaskComponent implements OnInit {
   myTask: FormGroup;
+  msg: String;
   pipe = new DatePipe('en-US');
-  constructor() { }
+  constructor(private service: AddTaskService) { }
 
   ngOnInit() {
     this.myTask = new FormGroup({
@@ -29,5 +32,18 @@ export class AddTaskComponent implements OnInit {
   onSubmit() {
     console.log(this.myTask);
     console.log(this.myTask.value);
+    this.service.addTask({
+      task: this.myTask.value.task,
+      parentTask: this.myTask.value.parentTask,
+      startDate: this.myTask.value.startDate,
+      priority: this.myTask.value.priority,
+      endDate: this.myTask.value.endDate
+    })
+      .subscribe(data => { this.showMessage(data.status.Result, data.status.Message); });
+  }
+  showMessage(status: boolean, message: string) {
+    this.msg = message;
+
+
   }
 }
