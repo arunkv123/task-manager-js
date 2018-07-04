@@ -33,13 +33,13 @@ export class AddTaskComponent implements OnInit {
     console.log(this.myTask);
     console.log(this.myTask.value);
     this.service.addTask({
-      task: this.myTask.value.task,
-      parentTask: this.myTask.value.parentTask,
-      startDate: this.myTask.value.startDate,
-      priority: this.myTask.value.priority,
-      endDate: this.myTask.value.endDate
+      task: this.myTask.value.add.task,
+      parentTask: this.myTask.value.add.parentTask,
+      startDate: this.myTask.value.add.startDate,
+      priority: this.myTask.value.add.priority,
+      endDate: this.myTask.value.add.endDate
     })
-      .subscribe(data => { this.showMessage(data.status.Result, data.status.Message); });
+      .subscribe(data => { this.showMessage(data.status, data.message); });
   }
   showMessage(status: boolean, message: string) {
     this.msg = message;

@@ -2,17 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Response } from '../value-objects/response';
 import { RequestOptions } from '@angular/http';
-import { TaskDetails } from '../value-objects/task-details';
+import { SearchResult } from '../value-objects/search-result';
+import { SearchParam } from '../value-objects/search-param';
 import { Observable } from 'rxjs';
 
 import { Options } from 'selenium-webdriver/chrome';
 import { environment } from '../../environments/environment';
 
 @Injectable()
-export class AddTaskService {
+export class ViewTaskService {
   constructor(private http: HttpClient) {}
-  addTask(taskDetails: TaskDetails): Observable<Response> {
-    console.log('Inside service' + taskDetails.task);
-    return this.http.post<Response>(environment.apiUrl + '/addTask', taskDetails );
+  viewTask(searchParam: SearchParam): Observable<SearchResult> {
+    console.log('Inside service' + searchParam.task);
+    return this.http.post<SearchResult>(environment.apiUrl + '/viewTask', searchParam );
   }
 }
