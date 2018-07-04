@@ -12,8 +12,8 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class ViewTaskService {
   constructor(private http: HttpClient) {}
-  viewTask(searchParam: SearchParam): Observable<SearchResult> {
-    console.log('Inside service' + searchParam.task);
-    return this.http.post<SearchResult>(environment.apiUrl + '/viewTask', searchParam );
+  viewTask(searchParam: SearchParam): Observable<SearchResult[]> {
+    console.log('Inside view service' + searchParam.task);
+    return this.http.post<SearchResult[]>(environment.apiUrl + '/viewTask', searchParam );
   }
 }

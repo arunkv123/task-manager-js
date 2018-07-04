@@ -1,21 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchResult } from '../value-objects/search-result';
+import { ViewTaskService } from './view-task.service';
 
 @Component({
   selector: 'app-view-task',
   templateUrl: './view-task.component.html',
-  styleUrls: ['./view-task.component.css']
+  styleUrls: ['./view-task.component.css'],
+  providers: [ViewTaskService]
 })
 export class ViewTaskComponent implements OnInit {
-  task: String;
-  parentTask: String;
+  task: string;
+  parentTask: string;
   priorityFrom: Number;
   priorityTo: Number;
   startDate: Date;
   endDate: Date;
   hide: boolean;
+  result: SearchResult;
   results: SearchResult[];
-  constructor() { }
+  constructor(private service: ViewTaskService) { }
 
   ngOnInit() {
     this.priorityFrom = 0;
@@ -27,9 +30,14 @@ export class ViewTaskComponent implements OnInit {
 
   search() {
     this.hide = false;
-    this.results = [
-      { task: 'Test1', priority: 10, parentTask: '', startDate: new Date(), endDate: new Date() },
-      { task: 'Test2', priority: 11, parentTask: 'Test1', startDate: new Date(), endDate: new Date() }
-    ];
+    this.service.viewTask({
+    task: this.task,
+    parentTask: this.parentTask,
+    priorityFrom: this.priorityFrom,
+    priorityTo: this.priorityTo,
+    startDate: this.startDate,
+    endDate: this.endDate
+   }).subscribe(data => {this.results = data; });
+   console.log(this.results);
   }
 }

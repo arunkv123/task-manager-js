@@ -1,7 +1,8 @@
 export class SearchParam {
     task: string;
     parentTask: string;
-    priority: Number;
+    priorityFrom: Number;
+    priorityTo: Number;
     startDate: Date;
     endDate: Date;
 }
