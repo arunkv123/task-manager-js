@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchResult } from '../value-objects/search-result';
 import { ViewTaskService } from './view-task.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-task',
@@ -18,7 +19,8 @@ export class ViewTaskComponent implements OnInit {
   hide: boolean;
   result: SearchResult;
   results: SearchResult[];
-  constructor(private service: ViewTaskService) { }
+  editRow: boolean[];
+  constructor(private service: ViewTaskService, private router: Router) { }
 
   ngOnInit() {
     this.priorityFrom = 0;
@@ -31,13 +33,24 @@ export class ViewTaskComponent implements OnInit {
   search() {
     this.hide = false;
     this.service.viewTask({
-    task: this.task,
-    parentTask: this.parentTask,
-    priorityFrom: this.priorityFrom,
-    priorityTo: this.priorityTo,
-    startDate: this.startDate,
-    endDate: this.endDate
-   }).subscribe(data => {this.results = data; });
-   console.log(this.results);
+      task: this.task,
+      parentTask: this.parentTask,
+      priorityFrom: this.priorityFrom,
+      priorityTo: this.priorityTo,
+      startDate: this.startDate,
+      endDate: this.endDate
+    }).subscribe(data => { this.results = data; });
+    console.log(this.results);
+  }
+  edit(i) {
+    console.log(this.results[i]);
+    this.router.navigate(['/update', {
+      task: this.results[i].task,
+      priority: this.results[i].priority,
+      startDate: this.results[i].startDate,
+      endDate: this.results[i].endDate,
+      parentTask: this.results[i].parentTask
+    }]);
+
   }
 }

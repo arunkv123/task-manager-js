@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/add', pathMatch: 'full' },
   { path: 'add', component: AddTaskComponent },
   { path: 'view', component: ViewTaskComponent },
+  { path: 'update', component: EditTaskComponent}
 ];
 
 

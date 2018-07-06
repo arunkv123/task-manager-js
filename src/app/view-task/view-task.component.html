@@ -35,7 +35,7 @@
   </p>
   <div >Search Results</div>
   <table>
-    <tr *ngFor="let result of results">
+    <tr *ngFor="let result of results; let i=index">
       <table style="width:50%">
         <tr>
           <th>Task</th>
@@ -46,7 +46,7 @@
         </tr>
         <tr>
           <td>
-            <input type="text" [(ngModel)]="result.task" disabled="true">
+            <input type="text" [(ngModel)]="result.task" disabled="true" >
           </td>
           <td>
             <input type="text" [(ngModel)]="result.parentTask" disabled="true">
@@ -63,7 +63,7 @@
             <output type="date" disabled="true">{{result.endDate | date:'MM/dd/yyyy'}}</output>
           </td>
           <td>
-              <button type="submit" class="btn btn-primary" >Edit</button>
+              <button type="submit" class="btn btn-primary" (click)="edit(i)">Edit</button>
           </td>
           <td><button type="submit" class="btn btn-primary" >Remove</button></td>
         </tr>

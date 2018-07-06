@@ -1,3 +1,62 @@
+<form [formGroup]="edit" (submit)="onSubmit()">
+  <div formGroupName="edit">
+    <p>
+    <table>
+      <tr>
+        <td>
+          <label for="title">Task</label>
+        </td>
+        <td>
+          <input type="text" class="form-control" id="task" name="task" formControlName="task">
+        </td>
+        <td>
+          <small *ngIf="!edit.controls['edit'].controls['task'].valid">Task is required!!</small>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="priority">Priority</label>
+        </td>
+        <td>
+          <input type="range" id="priority" name="priority" min="0" max="30" value="5" formControlName="priority">
+        </td>
+        <td>
+          <label for="priority">{{edit.value.edit.priority}}</label>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="parent">Parent Task</label>
+        </td>
+        <td>
+          <input type="text" class="form-control" id="parent" name="parent" formControlName="parent">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="title">Start date</label>
+        </td>
+        <td>
+          <input type="date" class="form-control" formControlName="startDate" id="startDate" name="startDate">
+        </td>
+        <td>
+          <small *ngIf="!edit.controls['edit'].controls['startDate'].valid">Task is required!!</small>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="title">End date</label>
+        </td>
+        <td>
+          <input type="date" class="form-control" formControlName="endDate" id="endDate" name="endDate">
+        </td>
+        <td>
+          <small *ngIf="!edit.controls['edit'].controls['endDate'].valid">Task is required!!</small>
+        </td>
+      </tr>
+    </table>
+  </div>
+
 <p>
-  edit-task works!
-</p>
+  <button type="submit" class="btn btn-primary" [disabled]="!edit.valid">Update Task</button>
+  <form>
