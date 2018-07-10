@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchResult } from '../value-objects/search-result';
 import { ViewTaskService } from './view-task.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-view-task',
@@ -20,7 +20,18 @@ export class ViewTaskComponent implements OnInit {
   result: SearchResult;
   results: SearchResult[];
   editRow: boolean[];
-  constructor(private service: ViewTaskService, private router: Router) { }
+  message: string;
+  msg: string;
+  constructor(private service: ViewTaskService, private router: Router, private route: ActivatedRoute) {
+    this.route.params.subscribe(params => {
+      this.message = params['message'];
+    });
+    if (null === this.message) {
+      this.hide = true;
+    } else {
+      this.hide = false;
+    }
+  }
 
   ngOnInit() {
     this.priorityFrom = 0;
@@ -45,6 +56,7 @@ export class ViewTaskComponent implements OnInit {
   edit(i) {
     console.log(this.results[i]);
     this.router.navigate(['/update', {
+      id: this.results[i].id,
       task: this.results[i].task,
       priority: this.results[i].priority,
       startDate: this.results[i].startDate,
@@ -52,5 +64,10 @@ export class ViewTaskComponent implements OnInit {
       parentTask: this.results[i].parentTask
     }]);
 
+  }
+
+  endTask(i) {
+    this.service.endTask(this.results[i].id).subscribe(data => this.msg);
+    window.location.reload();
   }
 }

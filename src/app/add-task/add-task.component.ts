@@ -33,6 +33,7 @@ export class AddTaskComponent implements OnInit {
     console.log(this.myTask);
     console.log(this.myTask.value);
     this.service.addTask({
+      id: 1,
       task: this.myTask.value.add.task,
       parentTask: this.myTask.value.add.parentTask,
       startDate: this.myTask.value.add.startDate,

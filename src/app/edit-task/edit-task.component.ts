@@ -3,24 +3,28 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SearchResult } from '../value-objects/search-result';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { EditTaskService } from './edit-task.service';
 
 @Component({
   selector: 'app-edit-task',
   templateUrl: './edit-task.component.html',
   styleUrls: ['./edit-task.component.css'],
-  providers: [ DatePipe]
+  providers: [EditTaskService, DatePipe]
 })
 export class EditTaskComponent implements OnInit {
   edit: FormGroup;
   task: string;
+  id: Number;
   parentTask: string;
   priority: Number;
   startDate: Date;
   endDate: Date;
+  msg: string;
   pipe = new DatePipe('en-US');
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private service: EditTaskService, private router: Router, private route: ActivatedRoute) {
     console.log(this.route);
     this.route.params.subscribe(params => {
+      this.id = params['id'];
       this.task = params['task'];
       this.priority = params['priority'];
       this.startDate = params['startDate'];
@@ -41,4 +45,16 @@ export class EditTaskComponent implements OnInit {
     });
   }
 
+  update() {
+    console.log('Update');
+    this.service.editTask({
+      id: this.id,
+      task: this.edit.value.edit.task,
+      parentTask: this.edit.value.edit.parentTask,
+      startDate: this.edit.value.edit.startDate,
+      priority: this.edit.value.edit.priority,
+      endDate: this.edit.value.edit.endDate
+    }).subscribe(data => this.msg);
+    this.router.navigate(['/view', {message: this.msg}]);
+  }
 }

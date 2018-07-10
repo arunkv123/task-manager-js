@@ -33,6 +33,9 @@
   <p>
     <button type="submit" class="btn btn-primary" (click)="search()">Search</button>
   </p>
+  <div>
+    <output ng-show="hide" g-value="message"></output>
+  </div>
   <div >Search Results</div>
   <table>
     <tr *ngFor="let result of results; let i=index">
@@ -65,7 +68,7 @@
           <td>
               <button type="submit" class="btn btn-primary" (click)="edit(i)">Edit</button>
           </td>
-          <td><button type="submit" class="btn btn-primary" >Remove</button></td>
+          <td><button type="submit" (click)="endTask(i)" class="btn btn-primary" >End Task</button></td>
         </tr>
       </table>
     </tr>
