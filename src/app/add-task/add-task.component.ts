@@ -24,8 +24,8 @@ export class AddTaskComponent implements OnInit {
         'task': new FormControl('', [Validators.required]),
         'priority': new FormControl('5', [Validators.required]),
         'parent': new FormControl('', []),
-        'startDate': new FormControl(this.pipe.transform(Date.now(), 'MM/dd/yyyy'), [Validators.required]),
-        'endDate': new FormControl(this.pipe.transform(Date.now(), 'MM/dd/yyyy'), [Validators.required])
+        'startDate': new FormControl(this.pipe.transform(Date.now(), 'yyyy-MM-dd'), [Validators.required]),
+        'endDate': new FormControl(this.pipe.transform(Date.now(), 'yyyy-MM-dd'), [Validators.required])
       })
     });
   }
@@ -35,7 +35,7 @@ export class AddTaskComponent implements OnInit {
     this.service.addTask({
       id: 1,
       task: this.myTask.value.add.task,
-      parentTask: this.myTask.value.add.parentTask,
+      parentTask: this.myTask.value.add.parent,
       startDate: this.myTask.value.add.startDate,
       priority: this.myTask.value.add.priority,
       endDate: this.myTask.value.add.endDate

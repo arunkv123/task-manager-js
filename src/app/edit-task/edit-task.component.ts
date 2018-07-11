@@ -39,8 +39,8 @@ export class EditTaskComponent implements OnInit {
         'task': new FormControl(this.task, [Validators.required]),
         'priority': new FormControl(this.priority, [Validators.required]),
         'parent': new FormControl(this.parentTask, []),
-        'startDate': new FormControl(this.pipe.transform(this.startDate, 'MM/dd/yyyy'), [Validators.required]),
-        'endDate': new FormControl(this.pipe.transform(this.endDate, 'MM/dd/yyyy'), [Validators.required])
+        'startDate': new FormControl(this.pipe.transform(this.startDate, 'yyyy-MM-dd'), [Validators.required]),
+        'endDate': new FormControl(this.pipe.transform(this.endDate, 'yyyy-MM-dd'), [Validators.required])
       })
     });
   }
@@ -50,7 +50,7 @@ export class EditTaskComponent implements OnInit {
     this.service.editTask({
       id: this.id,
       task: this.edit.value.edit.task,
-      parentTask: this.edit.value.edit.parentTask,
+      parentTask: this.edit.value.edit.parent,
       startDate: this.edit.value.edit.startDate,
       priority: this.edit.value.edit.priority,
       endDate: this.edit.value.edit.endDate
