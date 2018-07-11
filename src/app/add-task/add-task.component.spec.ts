@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AddTaskComponent } from './add-task.component';
 
 describe('AddTaskComponent', () => {
@@ -8,15 +8,24 @@ describe('AddTaskComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddTaskComponent ]
+      declarations: [AddTaskComponent],
+      imports: [FormGroup, FormControl]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AddTaskComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+  });
+
+  describe('add task ', () => {
+    it('on init button text', () => {
+      component.ngOnInit();
+      component.myTask.value.add = { task: 'Test', parentTask: 'test1' };
+      expect(component.onSubmit);
+    });
   });
 
   it('should create', () => {
