@@ -5,4 +5,5 @@ export class SearchResult {
     priority: Number;
     startDate: Date;
     endDate: Date;
+    endTask: Number;
 }

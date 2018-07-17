@@ -5,4 +5,5 @@ export class TaskDetails {
     priority: Number;
     startDate: Date;
     endDate: Date;
+    endTask: Number;
 }

@@ -38,9 +38,12 @@ export class AddTaskComponent implements OnInit {
       parentTask: this.myTask.value.add.parent,
       startDate: this.myTask.value.add.startDate,
       priority: this.myTask.value.add.priority,
-      endDate: this.myTask.value.add.endDate
+      endDate: this.myTask.value.add.endDate,
+      endTask: 0
     })
       .subscribe(data => { this.showMessage(data.status, data.message); });
+      this. showMessage(true, 'Task added sucessfully') ;
+      this.ngOnInit();
   }
   showMessage(status: boolean, message: string) {
     this.msg = message;

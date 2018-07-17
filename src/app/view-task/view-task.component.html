@@ -66,9 +66,9 @@
             <output type="date" disabled="true">{{result.endDate | date:'MM/dd/yyyy'}}</output>
           </td>
           <td>
-              <button type="submit" class="btn btn-primary" (click)="edit(i)">Edit</button>
+              <button type="submit" [disabled]="result.endTask=='1'" class="btn btn-primary" (click)="edit(i)">Edit</button>
           </td>
-          <td><button type="submit" (click)="endTask(i)" class="btn btn-primary" >End Task</button></td>
+          <td><button type="submit" [disabled]="result.endTask=='1'" (click)="endTask(i)" class="btn btn-primary" >End Task</button></td>
         </tr>
       </table>
     </tr>

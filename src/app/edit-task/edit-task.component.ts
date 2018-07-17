@@ -53,7 +53,8 @@ export class EditTaskComponent implements OnInit {
       parentTask: this.edit.value.edit.parent,
       startDate: this.edit.value.edit.startDate,
       priority: this.edit.value.edit.priority,
-      endDate: this.edit.value.edit.endDate
+      endDate: this.edit.value.edit.endDate,
+      endTask: 1
     }).subscribe(data => this.msg);
     this.router.navigate(['/view', {message: this.msg}]);
   }

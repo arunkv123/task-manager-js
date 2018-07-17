@@ -53,6 +53,13 @@ export class ViewTaskComponent implements OnInit {
     }).subscribe(data => { this.results = data; });
     console.log(this.results);
   }
+  disableEdit(i) {
+    if (this.results[i].endTask === 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   edit(i) {
     console.log(this.results[i]);
     this.router.navigate(['/update', {
@@ -68,6 +75,6 @@ export class ViewTaskComponent implements OnInit {
 
   endTask(i) {
     this.service.endTask(this.results[i].id).subscribe(data => this.msg);
-    window.location.reload();
+    this.results[i].endTask = 1;
   }
 }
