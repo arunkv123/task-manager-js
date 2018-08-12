@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { EditTaskComponent } from './edit-task.component';
+import { HttpClient, HttpResponse, HttpHeaders, HttpClientModule } from '@angular/common/http';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('EditTaskComponent', () => {
   let component: EditTaskComponent;
@@ -8,7 +10,8 @@ describe('EditTaskComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [EditTaskComponent]
+      declarations: [EditTaskComponent],
+      imports: [ReactiveFormsModule, FormsModule, RouterTestingModule,HttpClientModule]
     })
       .compileComponents();
   }));
@@ -23,11 +26,11 @@ describe('EditTaskComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('add task ', () => {
-    it('on init button text', () => {
+  describe('update task ', () => {
+    it('update task in db', () => {
       component.ngOnInit();
       component.task = 'Sprint1';
-      component.priority = 4;
+      component.priority = 20;
       expect(component.update());
     });
   });

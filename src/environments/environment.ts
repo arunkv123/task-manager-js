@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:9000'
+  apiUrl: 'http://localhost:9000/task-manager-app-0.0.1-SNAPSHOT'
 };
 
 /*
